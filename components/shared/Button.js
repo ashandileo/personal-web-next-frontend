@@ -1,5 +1,3 @@
-const { Children } = require("react")
-
 const Button = ({ children, className }) => {
   return (
     <button className={`
