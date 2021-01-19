@@ -1,11 +1,11 @@
 const Header = () => {
   return (
     <div className="dark-purple">
-      <div className="container flex justify-between items-center py-18">
-        <div className="text-white fs-18">
+      <div className="container tw-flex tw-justify-between tw-items-center py-18">
+        <div className="tw-text-white fs-18">
           Ashandi .
         </div>
-        <ul className="flex text-white">
+        <ul className="tw-flex tw-text-white">
           <li className="mr-24 fs-14">
             <a>About</a>
           </li>
