@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="dark-purple">
+    <header className="dark-purple">
       <div className="container tw-flex tw-justify-between tw-items-center py-18">
         <div className="tw-text-white fs-18">
           Ashandi .
@@ -20,7 +20,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </header>
   )
 }
 
