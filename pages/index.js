@@ -2,6 +2,7 @@ import About from "components/About"
 import Header from "components/Header"
 import Portfolio from "components/Portfolio"
 import Skills from "components/Skills"
+import Footer from "components/Footer"
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <About />
       <Portfolio />
       <Skills />
+      <Footer />
     </div>
   )
 }
