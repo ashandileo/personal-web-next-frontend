@@ -55,7 +55,7 @@
 }
 
 // ==== WIDTH & HEIGHT
-@for $i from 0 to 500 {
+@for $i from 0 to 1000 {
   .width-#{$i} {
     width: $i + px;
   }
