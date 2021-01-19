@@ -1,0 +1,27 @@
+const Header = () => {
+  return (
+    <div className="dark-purple">
+      <div className="container flex justify-between items-center py-18">
+        <div className="text-white fs-18">
+          Ashandi .
+        </div>
+        <ul className="flex text-white">
+          <li className="mr-24 fs-14">
+            <a>About</a>
+          </li>
+          <li className="mr-24 fs-14">
+            <a>Portfolio</a>
+          </li>
+          <li className="mr-24 fs-14"> 
+            <a>Skills</a>
+          </li>
+          <li className="fs-14">
+            <a>Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  )
+}
+
+export default Header
