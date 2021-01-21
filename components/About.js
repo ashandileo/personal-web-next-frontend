@@ -56,7 +56,7 @@ const About = () => {
             }
           </TextLoop>
         </div>
-        <Button className="mt-24">
+        <Button className="mt-42 tw-animate-float">
           View My Work
         </Button>
       </div>
