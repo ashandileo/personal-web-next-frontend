@@ -14,9 +14,15 @@ const Footer = () => {
           <>
             <h1 className="tw-font-medium fs-36 mb-12">Social</h1>
             <div className="mb-24">
-              <GitHubIcon fontSize="large" className="mr-20" />
-              <InstagramIcon fontSize="large" className="mr-20" />
-              <LinkedInIcon fontSize="large" />
+              <a href="https://github.com/ashandileo" target="__blank">
+                <GitHubIcon fontSize="large" className="mr-20" />
+              </a>
+              <a href="https://www.instagram.com/ashandi.leo/" target="__blank">
+                <InstagramIcon fontSize="large" className="mr-20" />
+              </a>
+              <a href="https://www.linkedin.com/in/ashandi-leonadi-509374176/" target="__blank">
+                <LinkedInIcon fontSize="large" />
+              </a>
             </div>
           </>
         )
