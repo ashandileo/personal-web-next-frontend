@@ -1,7 +1,11 @@
 import Button from "components/shared/Button"
 import TextLoop from "react-text-loop";
+import useScrollPosition from "../hooks/useScrollPosition"
 
 const About = () => {
+
+  const { scrollPosition } = useScrollPosition()
+  console.log("🚀 ~ file: About.js ~ line 8 ~ About ~ scrollPosition", scrollPosition)
 
   const listTech = [
     {
@@ -37,7 +41,7 @@ const About = () => {
   ]
 
   return (
-    <div className="dark-purple tw-relative" style={{ height: "75vh" }}>
+    <div className={`dark-purple tw-relative ${scrollPosition >= 0.15 ? "mt-63" : ""}`} style={{ height: "75vh" }}>
       <div className="container tw-text-white">
         <h1 className="fs-42 tw-font-bold pt-90">
           Hello. I am Ashandi <br /> Leonadi, a {" "}

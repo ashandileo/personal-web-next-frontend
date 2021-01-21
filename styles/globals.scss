@@ -20,6 +20,21 @@ a {
   box-sizing: border-box;
 }
 
+.my-header {
+  transition: 1000ms;
+
+  &.fixed {
+    position: fixed;
+    width: 100%;
+    top: -100px;
+    z-index: 10;
+  }
+
+  &.to-bottom {
+    top: 0;
+  }
+}
+
 .container {
   width: 95%;
   max-width: 1120px;
