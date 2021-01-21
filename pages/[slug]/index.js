@@ -8,7 +8,7 @@ const Index = () => {
 
   return (
     <div className="container mt-30 mb-80">
-      <a className="tw-cursor-pointer" onClick={() => router.push("/")}>
+      <a className="tw-cursor-pointer" onClick={() => router.back()}>
         {"<"} Back
       </a>
       <div className="tw-w-full height-450 mt-30">

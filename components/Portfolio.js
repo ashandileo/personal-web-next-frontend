@@ -37,9 +37,11 @@ const Portfolio = () => {
       <div className="tw-flex tw-justify-center tw-items-center mt-40 tw-flex-wrap">
         {
           listPortfolio.map(portfolio => (
-            <div className="tw-shadow-lg mb-20 mr-20" style={{ width: "calc(33.33% - 20px)" }}>
+            <div className="portfolio-item tw-shadow-lg mb-20 mr-20 tw-relative" style={{ width: "calc(33.33% - 20px)" }}>
               <Link {...linkProps("[slug]", portfolio.slug)}>
                 <a>
+                  <div className="backdrop tw-absolute tw-bg-transparent tw-opacity-100 tw-w-full tw-h-full"></div>
+                  <p className="text-view-detail tw-absolute tw-z-10 tw-w-full tw-h-full tw-opacity-0 tw-text-white tw-flex tw-justify-center tw-items-center tw-font-bold">View Detail</p>
                   <img src={portfolio.src} />
                 </a>
               </Link>

@@ -34,6 +34,20 @@ a {
   background-color: #211B35;
 }
 
+.portfolio-item:hover {
+
+  .backdrop {
+    background-color: #000;
+    opacity: 0.5;
+    transition: 300ms;
+  }
+
+  .text-view-detail {
+    opacity: 1;
+    transition: 300ms;
+  }
+}
+
 .slider {
   .slider-list {
     width: 100% !important;
