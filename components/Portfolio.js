@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { motion } from "framer-motion"
 
 const Portfolio = () => {
 
@@ -37,7 +38,7 @@ const Portfolio = () => {
       <div className="tw-flex tw-justify-center tw-items-center mt-40 tw-flex-wrap">
         {
           listPortfolio.map(portfolio => (
-            <div className="portfolio-item tw-shadow-lg mb-20 mr-20 tw-relative" style={{ width: "calc(33.33% - 20px)" }}>
+            <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.80 }} className="portfolio-item tw-shadow-lg mb-20 mr-20 tw-relative" style={{ width: "calc(33.33% - 20px)" }}>
               <Link {...linkProps("[slug]", portfolio.slug)}>
                 <a>
                   <div className="backdrop tw-absolute tw-bg-transparent tw-opacity-100 tw-w-full tw-h-full"></div>
@@ -45,7 +46,7 @@ const Portfolio = () => {
                   <img src={portfolio.src} />
                 </a>
               </Link>
-            </div>
+            </motion.div>
           ))
         }
       </div>
