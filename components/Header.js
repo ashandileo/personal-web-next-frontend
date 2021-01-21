@@ -9,7 +9,7 @@ const Header = () => {
   const router = useRouter()
 
   return (
-    <header className={`dark-purple my-header ${scrollPosition >= 0.15 && scrollPosition <= 0.23 ? "fixed" : scrollPosition >= 0.24 ? "fixed to-bottom" : ""}`}>
+    <header className={`dark-purple my-header ${router.pathname != "/" ? "" : scrollPosition >= 0.15 && scrollPosition <= 0.23 ? "fixed" : scrollPosition >= 0.24 ? "fixed to-bottom" : ""}`}>
       <div className="container tw-flex tw-justify-between tw-items-center py-18">
         <div className="tw-text-white fs-18">
           <Link href="/">
