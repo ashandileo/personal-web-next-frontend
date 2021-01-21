@@ -33,3 +33,15 @@ a {
 .soft-purple {
   background-color: #211B35;
 }
+
+.slider {
+  .slider-list {
+    width: 100% !important;
+    height: 100% !important;
+
+    .slider-slide {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}

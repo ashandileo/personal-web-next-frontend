@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import Badge from "components/shared/Badge"
+import Carousel from "nuka-carousel"
 
 const Index = () => {
 
@@ -11,7 +12,10 @@ const Index = () => {
         {"<"} Back
       </a>
       <div className="tw-w-full height-450 mt-30">
-        <img src="/github_finder.png" className="tw-w-full tw-h-full tw-object-contain" />
+        <Carousel>
+          <img src="/github_finder.png" className="tw-w-full tw-h-full tw-object-contain" />
+          <img src="/react.png" className="tw-w-full tw-h-full tw-object-contain" />
+        </Carousel>
       </div>
       <div>
         <h1 className="tw-font-medium fs-24 tw-text-gray-800">Github Finder</h1>
