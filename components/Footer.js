@@ -12,16 +12,16 @@ const Footer = () => {
       {
         router.pathname === "/" && (
           <>
-            <h1 className="tw-font-medium fs-36 mb-12 te-text-white">Social</h1>
+            <h1 className="tw-font-medium fs-36 mb-12 tw-text-white">Social</h1>
             <div className="mb-24">
               <a href="https://github.com/ashandileo" target="__blank">
-                <GitHubIcon fontSize="large" className="mr-20" />
+                <GitHubIcon fontSize="large" className="mr-20 tw-text-white" />
               </a>
               <a href="https://www.instagram.com/ashandi.leo/" target="__blank">
-                <InstagramIcon fontSize="large" className="mr-20" />
+                <InstagramIcon fontSize="large" className="mr-20 tw-text-white" />
               </a>
               <a href="https://www.linkedin.com/in/ashandi-leonadi-509374176/" target="__blank">
-                <LinkedInIcon fontSize="large" />
+                <LinkedInIcon fontSize="large" className="tw-text-white" />
               </a>
             </div>
           </>
