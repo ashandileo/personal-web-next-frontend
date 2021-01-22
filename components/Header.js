@@ -21,7 +21,7 @@ const Header = () => {
             router.pathname !== "/" && (
               <li className="mr-24 fs-14">
                 <Link href="/">
-                  <a>Home</a>
+                  <a className="tw-text-white">Home</a>
                 </Link>
               </li>
             )
