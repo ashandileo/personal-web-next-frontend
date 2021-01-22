@@ -28,7 +28,6 @@ const Index = () => {
     <div>
       <Layout className="layout">
         <Header>
-          <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
             {
               listMenu.map((menu, index) => (
@@ -46,7 +45,9 @@ const Index = () => {
             {activeMenu === "social" && <Social />}
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}>
+          Ashandi Leonadi @ 2021
+        </Footer>
       </Layout>
     </div>
   )
