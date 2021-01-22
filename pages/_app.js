@@ -11,6 +11,7 @@ import 'styles/helper.scss'
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter()
+  const { query: { withHeader, withFooter } } = router || {}
 
   return (
     <React.Fragment>
@@ -21,12 +22,12 @@ function MyApp({ Component, pageProps }) {
         height="4"
       />
       <AnimatePresence exitBeforeEnter>
-        <Header />
+        {withHeader !== false && <Header />}
           <Component {...pageProps} />
-        <Footer />
+        {withFooter !== false && <Footer />}
       </AnimatePresence>
     </React.Fragment>
   )
 }
 
-export default MyApp
+export default MyApp  
