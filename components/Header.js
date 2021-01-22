@@ -13,7 +13,7 @@ const Header = () => {
       <div className="container tw-flex tw-justify-between tw-items-center py-18">
         <div className="tw-text-white fs-18">
           <Link href="/">
-            <a>Ashandi .</a>
+            <a className="tw-text-white">Ashandi .</a>
           </Link>
         </div>
         <ul className="tw-flex tw-text-white">
@@ -30,16 +30,16 @@ const Header = () => {
             router.pathname === "/" && (
               <>
                 <li className="mr-24 fs-14">
-                  <a>About</a>
+                  <a className="tw-text-white">About</a>
                 </li>
                 <li className="mr-24 fs-14">
-                  <a>Portfolio</a>
+                  <a className="tw-text-white">Portfolio</a>
                 </li>
                 <li className="mr-24 fs-14"> 
-                  <a>Skills</a>
+                  <a className="tw-text-white">Skills</a>
                 </li>
                 <li className="fs-14">
-                  <a>Contact</a>
+                  <a className="tw-text-white">Contact</a>
                 </li>
               </>
             )

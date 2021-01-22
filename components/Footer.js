@@ -12,7 +12,7 @@ const Footer = () => {
       {
         router.pathname === "/" && (
           <>
-            <h1 className="tw-font-medium fs-36 mb-12">Social</h1>
+            <h1 className="tw-font-medium fs-36 mb-12 te-text-white">Social</h1>
             <div className="mb-24">
               <a href="https://github.com/ashandileo" target="__blank">
                 <GitHubIcon fontSize="large" className="mr-20" />

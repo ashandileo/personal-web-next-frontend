@@ -43,7 +43,7 @@ const About = () => {
   return (
     <div className={`dark-purple tw-relative ${scrollPosition >= 0.15 ? "mt-63" : ""}`} style={{ height: "75vh" }}>
       <div className="container tw-text-white">
-        <h1 className="fs-42 tw-font-bold pt-90">
+        <h1 className="fs-42 tw-font-bold pt-90 tw-text-white">
           Hello. I am Ashandi <br /> Leonadi, a {" "}
           <span className="tw-font-light tw-underline">full stack web <br /> developer</span>
         </h1>

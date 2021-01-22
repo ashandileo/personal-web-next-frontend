@@ -7,6 +7,7 @@ import NextNprogress from 'nextjs-progressbar';
 
 import 'styles/globals.scss'
 import 'styles/helper.scss'
+import 'antd/dist/antd.css';
 
 function MyApp({ Component, pageProps }) {
 
@@ -28,6 +29,10 @@ function MyApp({ Component, pageProps }) {
       </AnimatePresence>
     </React.Fragment>
   )
+}
+
+MyApp.getInitialProps = async (ctx) => {
+  return {}
 }
 
 export default MyApp  
