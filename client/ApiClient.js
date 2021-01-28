@@ -25,7 +25,7 @@ const client = (endpoint, { body, method, headers, params } = {}) => {
   }
 
   const onSuccess = (res) => {
-    let data = res?.data.data || null;
+    let data = res?.data.data || res?.data || null;
     data = camelizeKeys(data);
 
     return {

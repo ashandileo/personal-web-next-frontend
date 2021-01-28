@@ -10,3 +10,16 @@ export const postTechnology = (body) => {
     method: "POST"
   })
 }
+
+export const updateTechnology = (id, body) => {
+  return client(`technologies/${id}`, {
+    body,
+    method: "PUT"
+  })
+}
+
+export const deleteTechnology = (id) => {
+  return client(`technologies/${id}`, {
+    method: "DELETE"
+  })
+}
