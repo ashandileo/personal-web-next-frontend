@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import Portfolio from "components/admin/Portfolio"
 import Skills from "components/admin/Skills"
 import Social from "components/admin/Social"
@@ -29,19 +30,36 @@ const Index = () => {
     }
   ]
 
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <span onClick={() => alert("CLICKED")}>
+          Logout
+        </span>
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
     <div>
       <Layout className="layout">
         <Header>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
-            {
-              listMenu.map((menu, index) => (
-                <Menu.Item key={index} onClick={() => setActiveMenu(menu.name)}>
-                  {menu.title}
-                </Menu.Item>
-              ))
-            }
-          </Menu>
+          <div className="tw-flex tw-justify-between tw-items-center">
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
+              {
+                listMenu.map((menu, index) => (
+                  <Menu.Item key={index} onClick={() => setActiveMenu(menu.name)}>
+                    {menu.title}
+                  </Menu.Item>
+                ))
+              }
+            </Menu>
+            <Dropdown overlay={menu}>
+              <div className="tw-text-white tw-cursor-pointer">
+                Ashandi Leonadi <DownOutlined />
+              </div>
+            </Dropdown>
+          </div>
         </Header>
         <Content style={{ padding: '50px 50px 0' }}>
           <div className="site-layout-content">
