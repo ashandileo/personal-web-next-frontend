@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button, Space, Table } from 'antd';
 import ModalCreateEditTechnology from "components/shared/Modal/ModalCreateEditTechnology";
+import { getTechnology } from "../../client/TechnologyClient"
 
 const Technology = () => {
 
@@ -31,6 +32,15 @@ const Technology = () => {
       name: "React JS"
     },
   ]
+
+  const getTechnologyData = async () => {
+    const { data } = await getTechnology()
+    console.log("🚀 ~ file: Technology.js ~ line 38 ~ getTechnologyData ~ data", data)
+  }
+
+  useEffect(() => {
+    getTechnologyData()
+  }, [])
 
   return (
     <div>
