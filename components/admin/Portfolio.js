@@ -65,7 +65,7 @@ const Portfolio = () => {
     <div>
       <div className="tw-flex tw-justify-between tw-items-center">
         <h1 className="fs-24 tw-font-normal">Portfolio</h1>
-        <Button type="primary" onClick={() => setShowModal(true)}>Create Portfolio</Button>
+        <Button type="primary" onClick={() => setShowModal(true)}>Add Portfolio</Button>
       </div>
       <div className="mt-20">
         <Table

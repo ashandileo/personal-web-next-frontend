@@ -50,7 +50,7 @@ const Social = () => {
     <div>
       <div className="tw-flex tw-justify-between tw-items-center">
         <h1 className="fs-24 tw-font-normal">Social</h1>
-        <Button type="primary" onClick={() => setShowModal(true)}>Create Social</Button>
+        <Button type="primary" onClick={() => setShowModal(true)}>Add Social</Button>
       </div>
       <div className="mt-20">
         <Table
