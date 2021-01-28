@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import Portfolio from "components/admin/Portfolio"
 import Skills from "components/admin/Skills"
 import Social from "components/admin/Social"
+import Technology from "components/admin/Technology";
 
 const { Header, Content, Footer } = Layout;
 
@@ -21,6 +22,10 @@ const Index = () => {
     {
       title: "Social",
       name: "social"
+    },
+    {
+      title: "Technology",
+      name: "technology"
     }
   ]
 
@@ -38,11 +43,12 @@ const Index = () => {
             }
           </Menu>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{ padding: '50px 50px 0' }}>
           <div className="site-layout-content">
             {activeMenu === "portfolio" && <Portfolio />}
             {activeMenu === "skills" && <Skills />}
             {activeMenu === "social" && <Social />}
+            {activeMenu === "technology" && <Technology />}
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
