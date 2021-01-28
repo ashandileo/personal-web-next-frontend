@@ -1,26 +1,36 @@
 import { useState } from "react"
-import { Modal, Form, Input, Select, Upload, Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Modal, Form, Input, message } from 'antd';
+import { postTechnology } from "client/TechnologyClient"
 
 const ModalCreateEditSocial = ({
-  onClickOk,
   onClickCancel,
-  visible
+  visible,
+  getTechnologyData
 }) => {
+  const [name, setName] = useState('')
+
+  const handleSubmitModal = async () => {
+    const { data } = await postTechnology({ name })
+    if (data) {
+      message.success("Berhasil menambahkan data")
+      onClickCancel()
+      getTechnologyData()
+    }
+  }
 
   return (
     <Modal
-      title="Create Portfolio"
+      title="Add Technology"x
       centered
       visible={visible}
-      onOk={onClickOk}
+      onOk={handleSubmitModal}
       onCancel={onClickCancel}
       width={1000}
       bodyStyle={{ maxHeight: "500px", overflow: "auto" }}
     >
       <Form layout="vertical">
         <Form.Item label="Name">
-          <Input placeholder="Name" />
+          <Input placeholder="Name" onChange={e => setName(e.target.value)} />
         </Form.Item>
       </Form>
     </Modal>

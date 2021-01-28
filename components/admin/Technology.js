@@ -6,6 +6,7 @@ import { getTechnology } from "../../client/TechnologyClient"
 const Technology = () => {
 
   const [showModal, setShowModal] = useState(false)
+  const [technologies, setTechnologies] = useState([])
 
   const columns = [
     {
@@ -26,16 +27,21 @@ const Technology = () => {
     },
   ]
 
-  const data = [
-    {
-      key: 1,
-      name: "React JS"
-    },
-  ]
-
   const getTechnologyData = async () => {
     const { data } = await getTechnology()
-    console.log("🚀 ~ file: Technology.js ~ line 38 ~ getTechnologyData ~ data", data)
+
+    if (data) {
+      let modifiedData = []
+
+      data.map(d => {
+        modifiedData.push({
+          key: d.id,
+          name: d.name
+        })
+      })
+
+      setTechnologies(modifiedData)
+    }
   }
 
   useEffect(() => {
@@ -51,7 +57,7 @@ const Technology = () => {
       <div className="mt-20">
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={technologies}
           pagination={false}
         />
       </div>
@@ -59,8 +65,8 @@ const Technology = () => {
         showModal && (
           <ModalCreateEditTechnology
             visible={showModal}
-            onClickOk={() => alert("OK")}
             onClickCancel={() => setShowModal(false)}
+            getTechnologyData={getTechnologyData}
           />
         )
       }
