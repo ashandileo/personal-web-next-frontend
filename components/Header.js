@@ -16,7 +16,7 @@ const Header = () => {
             <a className="tw-text-white">Ashandi .</a>
           </Link>
         </div>
-        <ul className="tw-flex tw-text-white">
+        <ul className="tw-flex tw-text-white mb-0">
           {
             router.pathname !== "/" && (
               <li className="mr-24 fs-14">
