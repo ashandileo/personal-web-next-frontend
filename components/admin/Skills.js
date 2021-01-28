@@ -1,6 +1,10 @@
+import { useState } from "react"
 import { Button, Image, Table, Tag } from 'antd';
+import ModalCreateEditSkill from "components/shared/Modal/ModalCreateEditSkill"
 
 const Skills = () => {
+
+  const [showModal, setShowModal] = useState(false)
 
   const columns = [
     {
@@ -34,7 +38,7 @@ const Skills = () => {
     <div>
       <div className="tw-flex tw-justify-between tw-items-center">
         <h1 className="fs-24 tw-font-normal">Skills</h1>
-        <Button type="primary">Create Skills</Button>
+        <Button type="primary" onClick={() => setShowModal(true)}>Create Skills</Button>
       </div>
       <div className="mt-20">
         <Table
@@ -43,6 +47,15 @@ const Skills = () => {
           pagination={false}
         />
       </div>
+      {
+        showModal && (
+          <ModalCreateEditSkill
+            visible={showModal}
+            onClickOk={() => alert("OK")}
+            onClickCancel={() => setShowModal(false)}
+          />
+        )
+      }
     </div>
   )
 }
