@@ -7,6 +7,7 @@ const Technology = () => {
 
   const [showModal, setShowModal] = useState(false)
   const [technologies, setTechnologies] = useState([])
+  const [editData, setEditData] = useState({})
 
   const getTechnologyData = async () => {
     const { data } = await getTechnology()
@@ -33,6 +34,11 @@ const Technology = () => {
     }
   }
 
+  const onClickEdit = record => {
+    setEditData(record)
+    setShowModal(true)
+  }
+
   const columns = [
     {
       title: "Name",
@@ -45,7 +51,7 @@ const Technology = () => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a>Edit</a>
+          <a onClick={() => onClickEdit(record)}>Edit</a>
           <Popconfirm
             title="Yakin ingin menghapus data?"
             onConfirm={() => handleDeleteTechnology(record.key)}
@@ -67,7 +73,7 @@ const Technology = () => {
     <div>
       <div className="tw-flex tw-justify-between tw-items-center">
         <h1 className="fs-24 tw-font-normal">Technology</h1>
-        <Button type="primary" onClick={() => setShowModal(true)}>Add Technology</Button>
+        <Button type="primary" onClick={() => {setShowModal(true); setEditData({})}}>Add Technology</Button>
       </div>
       <div className="mt-20">
         <Table
@@ -82,6 +88,7 @@ const Technology = () => {
             visible={showModal}
             onClickCancel={() => setShowModal(false)}
             getTechnologyData={getTechnologyData}
+            editData={editData}
           />
         )
       }

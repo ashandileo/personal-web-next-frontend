@@ -1,18 +1,19 @@
 import { useState } from "react"
 import { Modal, Form, Input, message } from 'antd';
-import { postTechnology } from "client/TechnologyClient"
+import { postTechnology, updateTechnology } from "client/TechnologyClient"
 
 const ModalCreateEditSocial = ({
   onClickCancel,
   visible,
-  getTechnologyData
+  getTechnologyData,
+  editData
 }) => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState(editData?.name || "")
 
   const handleSubmitModal = async () => {
-    const { data } = await postTechnology({ name })
+    const { data } = editData?.name && editData?.key ? await updateTechnology(editData?.key, { name }) : await postTechnology({ name })
     if (data) {
-      message.success("Berhasil menambahkan data")
+      message.success(`Berhasil ${editData?.name ? "mengubah" : "menambah"} data`)
       onClickCancel()
       getTechnologyData()
     }
@@ -30,7 +31,7 @@ const ModalCreateEditSocial = ({
     >
       <Form layout="vertical" onFinish={handleSubmitModal }>
         <Form.Item label="Name">
-          <Input placeholder="Name" onChange={e => setName(e.target.value)} />
+          <Input placeholder="Name" onChange={e => setName(e.target.value)} value={name} />
         </Form.Item>
       </Form>
     </Modal>
