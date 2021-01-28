@@ -28,7 +28,7 @@ const ModalCreateEditSocial = ({
       width={1000}
       bodyStyle={{ maxHeight: "500px", overflow: "auto" }}
     >
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={handleSubmitModal }>
         <Form.Item label="Name">
           <Input placeholder="Name" onChange={e => setName(e.target.value)} />
         </Form.Item>
