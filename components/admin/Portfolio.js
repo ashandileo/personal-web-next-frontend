@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Image, Table, Tag } from 'antd';
+import { Button, Image, Table, Tag, Space } from 'antd';
 import ModalCreateEditPortfolio from "components/shared/Modal/ModalCreateEditPortfolio"
 
 const Portfolio = () => {
@@ -48,7 +48,17 @@ const Portfolio = () => {
           }
         </Image.PreviewGroup>
       )
-    }
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          <a>Edit</a>
+          <a>Delete</a>
+        </Space>
+      ),
+    },
   ]
 
   const data = [

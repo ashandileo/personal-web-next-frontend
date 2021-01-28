@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { Button, Image, Table } from 'antd';
-import Linkify from 'react-linkify';
+import { Button, Space, Table } from 'antd';
 import ModalCreateEditTechnology from "components/shared/Modal/ModalCreateEditTechnology";
 
 const Technology = () => {
@@ -13,6 +12,16 @@ const Technology = () => {
       dataIndex: "name",
       key: "name",
       render: text => text
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          <a>Edit</a>
+          <a>Delete</a>
+        </Space>
+      ),
     },
   ]
 
