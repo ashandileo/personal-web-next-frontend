@@ -1,6 +1,9 @@
+import { useState } from "react"
 import { Button, Image, Table, Tag } from 'antd';
+import ModalCreateEditPortfolio from "components/shared/Modal/ModalCreateEditPortfolio"
 
 const Portfolio = () => {
+  const [showModal, setShowModal] = useState(false)
 
   const columns = [
     {
@@ -62,7 +65,7 @@ const Portfolio = () => {
     <div>
       <div className="tw-flex tw-justify-between tw-items-center">
         <h1 className="fs-24 tw-font-normal">Portfolio</h1>
-        <Button type="primary">Create Portfolio</Button>
+        <Button type="primary" onClick={() => setShowModal(true)}>Create Portfolio</Button>
       </div>
       <div className="mt-20">
         <Table
@@ -71,6 +74,15 @@ const Portfolio = () => {
           pagination={false}
         />
       </div>
+      {
+        showModal && (
+          <ModalCreateEditPortfolio
+            visible={showModal}
+            onClickOk={() => alert("OK")}
+            onClickCancel={() => setShowModal(false)}
+          />
+        )
+      }
     </div>
   )
 }
