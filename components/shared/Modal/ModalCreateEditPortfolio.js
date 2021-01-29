@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Modal, Form, Input, Select, Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { getTechnology } from "../../../client/TechnologyClient"
 
 const ModalCreateEditPortfolio = ({
   onClickOk,
@@ -8,23 +9,28 @@ const ModalCreateEditPortfolio = ({
   visible
 }) => {
 
-  const options = [
-    {
-      label: "React JS",
-      value: 1
-    },
-    {
-      label: "Adonis JS",
-      value: 2
-    }
-  ]
+  const [technologies, setTechnologies] = useState([])
+  const [techIds, setTechIds] = useState([])
+
+  const options = []
+
+  technologies.length > 0 && technologies.map(technology => {
+    options.push({
+      label: technology.name,
+      value: technology.id
+    })
+  })
+
+  const setTechIdsToState = value => {
+    setTechIds(value)
+  }
   
   const selectProps = {
     mode: "multiple",
     style: { width: "100%" },
-    value : "",
+    value : techIds,
     options,
-    onChange: newValue => console.log(newValue),
+    onChange: newValue => setTechIdsToState(newValue),
     placeholder: "Select Item",
     maxTagCount: "responsive"
   }
@@ -43,6 +49,17 @@ const ModalCreateEditPortfolio = ({
       status: 'error',
     },
   ];
+
+  const getTechnologyData = async () => {
+    const { data } = await getTechnology()
+    if (data) {
+      setTechnologies(data)
+    }
+  }
+
+  useEffect(() => {
+    getTechnologyData()
+  }, [])
 
   return (
     <Modal
