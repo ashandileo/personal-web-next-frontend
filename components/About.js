@@ -5,7 +5,6 @@ import useScrollPosition from "../hooks/useScrollPosition"
 const About = () => {
 
   const { scrollPosition } = useScrollPosition()
-  console.log("🚀 ~ file: About.js ~ line 8 ~ About ~ scrollPosition", scrollPosition)
 
   const listTech = [
     {

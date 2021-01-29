@@ -32,7 +32,6 @@ function MyApp({ Component, pageProps }) {
 }
 
 MyApp.getInitialProps = async (ctx) => {
-  console.log("🚀 ~ file: _app.js ~ line 35 ~ MyApp.getInitialProps= ~ ctx", ctx)
   return {}
 }
 
