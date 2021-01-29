@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button, Image, Table, Space } from 'antd';
 import ModalCreateEditSkill from "components/shared/Modal/ModalCreateEditSkill"
+import { getSkill } from "client/SkillClient";
 
 const Skills = () => {
 
+  const [skills, setSkills] = useState([])
   const [showModal, setShowModal] = useState(false)
 
   const columns = [
@@ -36,13 +38,26 @@ const Skills = () => {
     },
   ]
 
-  const data = [
-    {
-      key: 1,
-      skill: "React JS",
-      picture: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-    },
-  ]
+  const getSkillData = async () => {
+    const { data } = await getSkill()
+    if (data) {
+      let modifiedData = []
+
+      data.map(d => {
+        modifiedData.push({
+          key: d.id,
+          skill: d.name,
+          picture: d.picture
+        })
+      })
+
+      setSkills(modifiedData)
+    }
+  }
+
+  useEffect(() => {
+    getSkillData()
+  }, [])
 
   return (
     <div>
@@ -53,7 +68,7 @@ const Skills = () => {
       <div className="mt-20">
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={skills}
           pagination={false}
         />
       </div>
@@ -63,6 +78,7 @@ const Skills = () => {
             visible={showModal}
             onClickOk={() => alert("OK")}
             onClickCancel={() => setShowModal(false)}
+            getSkillData={getSkillData}
           />
         )
       }

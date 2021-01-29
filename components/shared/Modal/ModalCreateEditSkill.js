@@ -5,7 +5,8 @@ import { postSkill } from "client/SkillClient";
 
 const ModalCreateEditSkill = ({
   onClickCancel,
-  visible
+  visible,
+  getSkillData
 }) => {
 
   const [name, setName] = useState("")
@@ -27,6 +28,7 @@ const ModalCreateEditSkill = ({
     if (data) {
       message.success(`Berhasil menambahkan data`)
       onClickCancel()
+      getSkillData()
     }
   } 
 
