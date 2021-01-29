@@ -7,6 +7,7 @@ const Skills = () => {
 
   const [skills, setSkills] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [editId, setEditId] = useState(null)
 
   const getSkillData = async () => {
     const { data } = await getSkill()
@@ -33,8 +34,14 @@ const Skills = () => {
     }
   }
 
-  const onClickEdit = () => {
+  const onClickEdit = (record) => {
+    setEditId(record.key)
+    setShowModal(true)
+  }
 
+  const onClickAddSkills = () => {
+    setEditId(null)
+    setShowModal(true)
   }
 
   const columns = [
@@ -82,7 +89,7 @@ const Skills = () => {
     <div>
       <div className="tw-flex tw-justify-between tw-items-center">
         <h1 className="fs-24 tw-font-normal">Skills</h1>
-        <Button type="primary" onClick={() => setShowModal(true)}>Add Skills</Button>
+        <Button type="primary" onClick={onClickAddSkills}>Add Skills</Button>
       </div>
       <div className="mt-20">
         <Table
@@ -98,6 +105,7 @@ const Skills = () => {
             onClickOk={() => alert("OK")}
             onClickCancel={() => setShowModal(false)}
             getSkillData={getSkillData}
+            editId={editId}
           />
         )
       }

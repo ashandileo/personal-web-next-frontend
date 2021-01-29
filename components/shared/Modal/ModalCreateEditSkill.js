@@ -1,42 +1,69 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Modal, Form, Input, message, Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { postSkill } from "client/SkillClient";
+import { getSkillDetail, postSkill, updateSkill } from "client/SkillClient";
 
 const ModalCreateEditSkill = ({
   onClickCancel,
   visible,
-  getSkillData
+  getSkillData,
+  editId
 }) => {
-
   const [name, setName] = useState("")
-  const [fileUploaded, setFileUploaded] = useState("")
+  const [fileUploaded, setFileUploaded] = useState({})
+  const [defaultFileList, setDefaultFileList] = useState([])
+  const [showModal, setShowModal] = useState(false)
 
   const handleChangeUpload = e => {
     if (e.file.response) {
-      setFileUploaded(e.file.response.url)
+      setFileUploaded({
+        url: e.file.response.url,
+        name: e.file.name
+      })
     }
   }
 
   const handleSubmitModal = async () => {
     const payload = {
       name: name,
-      picture: fileUploaded
+      picture: fileUploaded.url,
+      pictureName: fileUploaded.name
     }
 
-    const { data } = await postSkill(payload)
+    const { data } = editId ? await updateSkill(editId, payload) : await postSkill(payload)
     if (data) {
-      message.success(`Berhasil menambahkan data`)
+      message.success(`Berhasil ${editId ? "mengubah" : "menambah"} data`)
       onClickCancel()
       getSkillData()
     }
   } 
 
+  const getDetailSkillData = async () => {
+    const { data } = await getSkillDetail(editId)
+    if (data) {
+      setName(data.name)
+      if (data.pictureName && data.picture) {
+        setDefaultFileList([...defaultFileList, {
+          name: data.pictureName || "",
+          url: data.picture || "",
+          status: "done"
+        }])
+      }
+    }
+  }
+
+  useEffect( async () => {
+    if (editId) {
+      await getDetailSkillData()
+    }
+    setShowModal(true)
+  }, [])
+
   return (
     <Modal
       title="Add Skill"
       centered
-      visible={visible}
+      visible={showModal && visible}
       onOk={handleSubmitModal}
       onCancel={onClickCancel}
       width={1000}
@@ -53,6 +80,7 @@ const ModalCreateEditSkill = ({
             listType="picture"
             onChange={e => handleChangeUpload(e)}
             maxCount={1}
+            defaultFileList={defaultFileList}
           >
             <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>
