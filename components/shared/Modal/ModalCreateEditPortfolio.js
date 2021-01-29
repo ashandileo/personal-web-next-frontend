@@ -29,7 +29,7 @@ const ModalCreateEditPortfolio = ({
     mode: "multiple",
     style: { width: "100%" },
     value : techIds,
-    options,
+    options: options,
     onChange: newValue => setTechIdsToState(newValue),
     placeholder: "Select Item",
     maxTagCount: "responsive"
