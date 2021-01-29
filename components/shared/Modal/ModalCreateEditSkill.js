@@ -13,13 +13,19 @@ const ModalCreateEditSkill = ({
   const [fileUploaded, setFileUploaded] = useState({})
   const [defaultFileList, setDefaultFileList] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
 
   const handleChangeUpload = e => {
-    if (e.file && e.file.response) {
+    if (e.file.status === "uploading") {
+      setIsUploading(true)
+    }
+
+    if (e.file.status === "done") {
       setFileUploaded({
         url: e.file.response.url,
         name: e.file.name
       })
+      setIsUploading(false)
     }
   }
 
@@ -65,6 +71,7 @@ const ModalCreateEditSkill = ({
       centered
       visible={showModal && visible}
       onOk={handleSubmitModal}
+      okButtonProps={{ disabled: isUploading }}
       onCancel={onClickCancel}
       width={1000}
       bodyStyle={{ maxHeight: "500px", overflow: "auto" }}
