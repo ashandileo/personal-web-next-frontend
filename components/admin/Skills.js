@@ -1,12 +1,41 @@
 import { useState, useEffect } from "react"
-import { Button, Image, Table, Space } from 'antd';
+import { Button, Image, Table, Space, Popconfirm, message } from 'antd';
 import ModalCreateEditSkill from "components/shared/Modal/ModalCreateEditSkill"
-import { getSkill } from "client/SkillClient";
+import { deleteSkill, getSkill } from "client/SkillClient";
 
 const Skills = () => {
 
   const [skills, setSkills] = useState([])
   const [showModal, setShowModal] = useState(false)
+
+  const getSkillData = async () => {
+    const { data } = await getSkill()
+    if (data) {
+      let modifiedData = []
+
+      data.map(d => {
+        modifiedData.push({
+          key: d.id,
+          skill: d.name,
+          picture: d.picture
+        })
+      })
+
+      setSkills(modifiedData)
+    }
+  }
+
+  const handleDeleteSkill = async id => {
+    const { data } = await deleteSkill(id)
+    if (data) {
+      message.success("Berhasil menghapus data")
+      getSkillData()
+    }
+  }
+
+  const onClickEdit = () => {
+
+  }
 
   const columns = [
     {
@@ -31,29 +60,19 @@ const Skills = () => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a>Edit</a>
-          <a>Delete</a>
+          <a onClick={() => onClickEdit(record)}>Edit</a>
+          <Popconfirm
+            title="Yakin ingin menghapus data?"
+            onConfirm={() => handleDeleteSkill(record.key)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <a href="#">Delete</a>
+          </Popconfirm>
         </Space>
       ),
     },
   ]
-
-  const getSkillData = async () => {
-    const { data } = await getSkill()
-    if (data) {
-      let modifiedData = []
-
-      data.map(d => {
-        modifiedData.push({
-          key: d.id,
-          skill: d.name,
-          picture: d.picture
-        })
-      })
-
-      setSkills(modifiedData)
-    }
-  }
 
   useEffect(() => {
     getSkillData()
