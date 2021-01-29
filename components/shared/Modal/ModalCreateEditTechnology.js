@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Modal, Form, Input, message } from 'antd';
 import { postTechnology, updateTechnology } from "client/TechnologyClient"
 
@@ -9,6 +9,7 @@ const ModalCreateEditSocial = ({
   editData
 }) => {
   const [name, setName] = useState(editData?.name || "")
+  const ref = useRef()
 
   const handleSubmitModal = async () => {
     const { data } = editData?.name && editData?.key ? await updateTechnology(editData?.key, { name }) : await postTechnology({ name })
@@ -18,6 +19,10 @@ const ModalCreateEditSocial = ({
       getTechnologyData()
     }
   }
+
+  useEffect(() => {
+    ref.current.focus({ cursor: "end" })
+  },[])
 
   return (
     <Modal
@@ -31,7 +36,7 @@ const ModalCreateEditSocial = ({
     >
       <Form layout="vertical" onFinish={handleSubmitModal }>
         <Form.Item label="Name">
-          <Input placeholder="Name" onChange={e => setName(e.target.value)} value={name} />
+          <Input placeholder="Name" onChange={e => setName(e.target.value)} value={name} ref={ref} />
         </Form.Item>
       </Form>
     </Modal>
