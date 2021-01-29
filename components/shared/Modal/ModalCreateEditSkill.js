@@ -15,7 +15,7 @@ const ModalCreateEditSkill = ({
   const [showModal, setShowModal] = useState(false)
 
   const handleChangeUpload = e => {
-    if (e.file.response) {
+    if (e.file && e.file.response) {
       setFileUploaded({
         url: e.file.response.url,
         name: e.file.name
