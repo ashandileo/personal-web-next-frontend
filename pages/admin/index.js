@@ -20,10 +20,10 @@ const Index = () => {
       title: "Skills",
       name: "skills"
     },
-    {
-      title: "Social",
-      name: "social"
-    },
+    // {
+    //   title: "Social",
+    //   name: "social"
+    // },
     {
       title: "Technology",
       name: "technology"
