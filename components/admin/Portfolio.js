@@ -88,7 +88,6 @@ const Portfolio = () => {
         showModal && (
           <ModalCreateEditPortfolio
             visible={showModal}
-            onClickOk={() => alert("OK")}
             onClickCancel={() => setShowModal(false)}
           />
         )
