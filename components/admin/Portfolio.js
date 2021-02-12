@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button, Image, Table, Tag, Space } from 'antd';
 import ModalCreateEditPortfolio from "components/shared/Modal/ModalCreateEditPortfolio"
+import { getPortfolio } from "client/PortfolioClient"
 
 const Portfolio = () => {
   const [showModal, setShowModal] = useState(false)
+  const [portfolios, setPortfolios] = useState([])
 
   const columns = [
     {
@@ -61,15 +63,41 @@ const Portfolio = () => {
     },
   ]
 
-  const data = [
-    {
-      key: 1,
-      title: "Github Finder",
-      content: "<p> An application to search github users and repositories</p>",
-      technologies: ['React JS', 'Adonis JS'],
-      documentation: ["https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png", "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"]
-    },
-  ]
+  const getPortfolioData = async () => {
+    const { data } = await getPortfolio()
+    if (data) {
+      let modifiedData = []
+
+      data.map(d => {
+        let technologies = []
+        let documentation = []
+
+        d.technologies.map(technology => {
+          technologies.push(technology.name)
+        })
+
+        d.portfolioImages.map(image => {
+          if (image?.pictureUrl) {
+            documentation.push(image?.pictureUrl)
+          }
+        })
+
+        modifiedData.push({
+          key: d.id,
+          title: d.title,
+          content: d.content,
+          technologies: technologies,
+          documentation: documentation
+        })
+      })
+
+      setPortfolios(modifiedData)
+    }
+  }
+
+  useEffect(() => {
+    getPortfolioData()
+  }, [])
 
   return (
     <div>
@@ -80,7 +108,7 @@ const Portfolio = () => {
       <div className="mt-20">
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={portfolios}
           pagination={false}
         />
       </div>
