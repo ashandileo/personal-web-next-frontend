@@ -1,11 +1,57 @@
 import { useState, useEffect } from "react"
-import { Button, Image, Table, Tag, Space } from 'antd';
+import { Button, Image, Table, Tag, Space, Popconfirm, message } from 'antd';
 import ModalCreateEditPortfolio from "components/shared/Modal/ModalCreateEditPortfolio"
-import { getPortfolio } from "client/PortfolioClient"
+import { getPortfolio, deletePortfolio } from "client/PortfolioClient"
 
 const Portfolio = () => {
   const [showModal, setShowModal] = useState(false)
   const [portfolios, setPortfolios] = useState([])
+  const [editId, setEditId] = useState(null)
+
+  const getPortfolioData = async () => {
+    const { data } = await getPortfolio()
+    if (data) {
+      let modifiedData = []
+
+      data.map(d => {
+        let technologies = []
+        let documentation = []
+
+        d.technologies.map(technology => {
+          technologies.push(technology.name)
+        })
+
+        d.portfolioImages.map(image => {
+          if (image?.pictureUrl) {
+            documentation.push(image?.pictureUrl)
+          }
+        })
+
+        modifiedData.push({
+          key: d.id,
+          title: d.title,
+          content: d.content,
+          technologies: technologies,
+          documentation: documentation
+        })
+      })
+
+      setPortfolios(modifiedData)
+    }
+  }
+
+  const onClickEdit = (record) => {
+    setEditId(record.key)
+    setShowModal(true)
+  }
+
+  const handleDeletePortfolio = async id => {
+    const { data } = await deletePortfolio(id)
+    if (data) {
+      message.success("Berhasil menghapus data")
+      getPortfolioData()
+    }
+  }
 
   const columns = [
     {
@@ -56,44 +102,19 @@ const Portfolio = () => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a>Edit</a>
-          <a>Delete</a>
+          <a onClick={() => onClickEdit(record)}>Edit</a>
+          <Popconfirm
+            title="Yakin ingin menghapus data?"
+            onConfirm={() => handleDeletePortfolio(record.key)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <a href="#">Delete</a>
+          </Popconfirm>
         </Space>
       ),
     },
   ]
-
-  const getPortfolioData = async () => {
-    const { data } = await getPortfolio()
-    if (data) {
-      let modifiedData = []
-
-      data.map(d => {
-        let technologies = []
-        let documentation = []
-
-        d.technologies.map(technology => {
-          technologies.push(technology.name)
-        })
-
-        d.portfolioImages.map(image => {
-          if (image?.pictureUrl) {
-            documentation.push(image?.pictureUrl)
-          }
-        })
-
-        modifiedData.push({
-          key: d.id,
-          title: d.title,
-          content: d.content,
-          technologies: technologies,
-          documentation: documentation
-        })
-      })
-
-      setPortfolios(modifiedData)
-    }
-  }
 
   useEffect(() => {
     getPortfolioData()
